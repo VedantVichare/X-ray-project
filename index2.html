@@ -1,0 +1,322 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pneumonia Detection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+        }
+
+        .container {
+            margin-top: 40px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .img-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .img-fluid-custom {
+            width: 300px;
+            /* Fixed width for both images */
+            height: 300px;
+            /* Fixed height for both images */
+            object-fit: cover;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-text {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .percentage {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .pneumonia-percentage {
+            color: #ff4d4d;
+        }
+
+        .normal-percentage {
+            color: #4caf50;
+        }
+
+        .image-section h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .btn-custom {
+            background-color: #5c5ced;
+            border-color: #5c5ced;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+        }
+
+        .btn-custom:hover {
+            background-color: #3d3dae;
+            border-color: #3d3dae;
+        }
+
+        .hospital-title {
+            color: #007bff;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .results-container {
+            margin-top: 20px;
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-clear {
+            background-color: #e0e0e0;
+            border-color: #e0e0e0;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+        }
+
+        .btn-clear:hover {
+            background-color: #b0b0b0;
+            border-color: #b0b0b0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="p-3 text-center" action="/" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <input class="form-control" type="file" name="imagefile" required>
+            </div>
+            <div class="form-buttons">
+                <button class="btn btn-custom" type="submit">Predict Image</button>
+                <button class="btn btn-clear" type="reset">Clear</button>
+            </div>
+        </form>
+        <br><br>
+        {% if prediction %}
+        <h1 class="text-center hospital-title mb-4">Vedant Hospital</h1>
+        <div class="text-center results-container">
+            <p class="result-text">Image is classified as: <strong>{{ prediction }}</strong></p>
+            <p class="percentage pneumonia-percentage">Pneumonia Probability: <strong>{{ percent1 }}%</strong></p>
+            <p class="percentage normal-percentage">Normal Probability: <strong>{{ percent2 }}%</strong></p>
+
+            <div class="img-container">
+                {% if image_url %}
+                <div class="image-section">
+                    <h3>Uploaded Image:</h3>
+                    <img src="{{ image_url }}" alt="Uploaded Image" class="img-fluid img-fluid-custom">
+                </div>
+                {% endif %}
+
+                {% if image_url1 %}
+                <div class="image-section">
+                    <h3>Saliency Map:</h3>
+                    <img src="{{ image_url1 }}" alt="Saliency Map" class="img-fluid img-fluid-custom">
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html> -->
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pneumonia Detection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+        }
+
+        .container {
+            margin-top: 40px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .img-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            /* Reduce gap between images */
+            margin: 20px 0;
+        }
+
+        .img-fluid-custom {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-text {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .percentage {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .pneumonia-percentage {
+            color: #ff4d4d;
+        }
+
+        .normal-percentage {
+            color: #4caf50;
+        }
+
+        .image-section h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .btn-custom {
+            background-color: #5c5ced;
+            border-color: #5c5ced;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+        }
+
+        .btn-custom:hover {
+            background-color: #3d3dae;
+            border-color: #3d3dae;
+        }
+
+        .hospital-title {
+            color: #007bff;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .results-container {
+            margin-top: 20px;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-clear {
+            background-color: #e0e0e0;
+            border-color: #e0e0e0;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+        }
+
+        .btn-clear:hover {
+            background-color: #b0b0b0;
+            border-color: #b0b0b0;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form id="uploadForm" class="p-3 text-center" action="/" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <input id="fileInput" class="form-control" type="file" name="imagefile" required>
+            </div>
+            <div class="form-buttons">
+                <button class="btn btn-custom" type="submit">Predict Image</button>
+                <button class="btn btn-clear" type="button" onclick="clearForm()">Clear</button>
+            </div>
+        </form>
+        <br><br>
+        <div id="results" class="{{ 'results-container' if prediction else 'hidden' }}">
+            {% if prediction %}
+            <h1 class="text-center hospital-title mb-4">Vedant Hospital</h1>
+            <div class="text-center">
+                <p class="result-text">Image is classified as: <strong>{{ prediction }}</strong></p>
+                <p class="percentage pneumonia-percentage">Pneumonia Probability: <strong>{{ percent1 }}</strong></p>
+                <p class="percentage normal-percentage">Normal Probability: <strong>{{ percent2 }}</strong></p>
+
+                <div class="img-container">
+                    {% if image_url %}
+                    <div class="image-section">
+                        <h3>Uploaded Image:</h3>
+                        <img src="{{ image_url }}" alt="Uploaded Image" class="img-fluid img-fluid-custom">
+                    </div>
+                    {% endif %}
+
+                    {% if image_url1 %}
+                    <div class="image-section">
+                        <h3>Saliency Map:</h3>
+                        <img src="{{ image_url1 }}" alt="Saliency Map" class="img-fluid img-fluid-custom">
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function clearForm() {
+            document.getElementById('fileInput').value = ''; // Clear file input
+            document.getElementById('results').classList.add('hidden'); // Hide results
+        }
+    </script>
+</body>
+
+</html>
